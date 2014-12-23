@@ -48,7 +48,7 @@ function acf_pro_or_die(){
 }
 
 function acf_dependent_plugin_notice(){
-	?><div class="error"><p><?php _e('ACF Tooltip requires Advanced Custom Fields Pro or the free version of ACF (Version 4) to be installed &amp; activated.', 'acf-tooltip') ?></p></div>
+	?><div class="error"><p><?php _e('ACF Tooltip requires Advanced Custom Fields 5 (Pro) or Advanced Custom Fields Version 4 to be installed &amp; activated.', 'acf-tooltip') ?></p></div>
 <?php
 }
 
