@@ -6,8 +6,6 @@ Change the display of the ACF instructions. The ACF-Tooltips plugin hides the in
 
 **This plugin needs the installation/activation of Advanced Custom Fields V4 or V5**
 
-***Currently the plugin does not work as expected with the Flexible Content and the Repater Field. Within the next days, I will try to make it work using this fields.***
-
 ### Installation
 
 This add-on can be treated as both a WP plugin and a theme include.
