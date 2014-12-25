@@ -3,7 +3,9 @@
 }
 
 .field .label .dashicons,
-.acf-field .acf-label .dashicons {
+.acf-field .acf-label .dashicons,
+.table-layout .acf-th .dashicons,
+th.acf-th-text .dashicons {
 	color: #0074a2;
 	width: 20px;
 	height: 20px;
