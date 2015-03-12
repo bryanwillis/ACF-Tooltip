@@ -3,13 +3,13 @@
 Plugin Name: ACF Tooltip
 Plugin URI: http://www.dreihochzwo.de/advanced-custom-fields-show-instructions-as-tooltip
 Description: Displays ACF Field description as tooltips
-Version: 1.0.0
+Version: 1.0.1
 Author: Thomas Meyer
 Author URI: http://www.dreihochzwo.de
 Text Domain: acf_tooltip
 Domain Path: /languages/
 License: GPLv2 or later.
-Copyright: Kyle Phillips
+Copyright: Thomas Meyer
 */
 
 /*  Copyright 2014 Thomas Meyer  (email : support@dreihochzwo.de)
@@ -32,13 +32,11 @@ load_plugin_textdomain( 'acf-tooltip', false, dirname( plugin_basename(__FILE__)
 
 /**
  * Let's make sure ACF Pro is installed & activated
- * If not, we give notice and kill the activation of ACF Media Credit.
+ * If not, we give notice and kill the activation of ACF Tooltip.
  * Also works if ACF Pro is deactivated.
- * @donaldG
  */
-add_action('admin_init', 'acf_pro_or_die');
-function acf_pro_or_die(){
-	if (! function_exists('acf_register_repeater_field') && ! class_exists('acf') ) {
+function acf_or_die(){
+	if (!class_exists('acf') ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );   
 			if ( isset( $_GET['activate'] ) ) {
 				unset( $_GET['activate'] );
@@ -46,30 +44,23 @@ function acf_pro_or_die(){
 		add_action( 'admin_notices', 'acf_dependent_plugin_notice' );
 	}
 }
+add_action('admin_init', 'acf_or_die');
 
 function acf_dependent_plugin_notice(){
 	?><div class="error"><p><?php _e('ACF Tooltip requires Advanced Custom Fields 5 (Pro) or Advanced Custom Fields Version 4 to be installed &amp; activated.', 'acf-tooltip') ?></p></div>
 <?php
 }
 
-if (!function_exists('get_plugins')) {
-		require_once ABSPATH . 'wp-admin/includes/plugin.php';
-	}
+// Include field type for ACF5
+// $version = 5 and can be ignored until ACF6 exists
+function include_field_types_tooltip( $version ) {
+	include_once('acf-tooltip-v5.php');
+}
+add_action('acf/include_field_types', 'include_field_types_tooltip');	
 
-	$plugins = get_plugins();
-	// echo "<pre>";
-	// print_r($plugins);
-	// echo "</pre>";
 
-	if ( isset($plugins['advanced-custom-fields-pro/acf.php']) ) {
-
-		wp_enqueue_script( 'jquery-qtip', plugin_dir_url( __FILE__ ) . '/js/jquery.qtip.min.js' );
-		wp_enqueue_style( 'jquery-qtip.js', plugin_dir_url( __FILE__ ) . '/css/jquery.qtip.min.css' );
-
-		if ( $plugins['advanced-custom-fields-pro/acf.php']['Version'] >= 5 && is_plugin_active('advanced-custom-fields-pro/acf.php') ) {
-			include_once('acf-tooltip-v5.php');
-		} elseif ( $plugins['advanced-custom-fields/acf.php']['Version'] >= 4 && is_plugin_active('advanced-custom-fields/acf.php') ) {
-			include_once('acf-tooltip-v4.php');
-		}
-
-	}
+// Include field type for ACF4
+function register_fields_tooltip() {
+	include_once('acf-tooltip-v4.php');
+}
+add_action('acf/register_fields', 'register_fields_tooltip');

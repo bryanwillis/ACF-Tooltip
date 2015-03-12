@@ -32,5 +32,8 @@ This ACF field type is compatible with:
 
 
 ### Changelog
+**1.0.1**
+* Small bugfixes
+
 **1.0.0**
 * First release
