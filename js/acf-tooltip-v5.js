@@ -65,6 +65,9 @@
 			position: {
 				my: 'center left',  // Position my top left...
 				at: 'right center', // at the bottom right of...
+			},
+			content: {
+				text: $(this).parent().next('.description').html()
 			}
 		});
 	}
@@ -74,7 +77,7 @@
 		tooltiptext = description.html();
 		description.remove();
 		if( !$.trim(tooltiptext) =='') {
-			repeaterfield.append('<span class="tooltip" title="'+tooltiptext+'"> <span class="dashicons dashicons-editor-help"></span></span>');
+			repeaterfield.append('<span class="dashicons dashicons-editor-help tooltip"></span>');
 		}
 	};
 
@@ -83,7 +86,7 @@
 		label = labelfield.find('label');
 		if( !$.trim(tooltiptext) =='') {
 			if ( !label.hasClass('has_tooltip') ) {
-				label.append('<span class="tooltip" title="'+tooltiptext+'"> <span class="dashicons dashicons-editor-help"></span></span>');
+				label.append('<span class="dashicons dashicons-editor-help tooltip"></span>');
 				label.addClass('has_tooltip');
 			}
 		}

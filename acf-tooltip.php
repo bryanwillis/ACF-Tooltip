@@ -3,7 +3,7 @@
 Plugin Name: ACF Tooltip
 Plugin URI: http://www.dreihochzwo.de/advanced-custom-fields-show-instructions-as-tooltip
 Description: Displays ACF Field description as tooltips
-Version: 1.0.1
+Version: 1.1.0
 Author: Thomas Meyer
 Author URI: http://www.dreihochzwo.de
 Text Domain: acf_tooltip
@@ -56,11 +56,4 @@ function acf_dependent_plugin_notice(){
 function include_field_types_tooltip( $version ) {
 	include_once('acf-tooltip-v5.php');
 }
-add_action('acf/include_field_types', 'include_field_types_tooltip');	
-
-
-// Include field type for ACF4
-function register_fields_tooltip() {
-	include_once('acf-tooltip-v4.php');
-}
-add_action('acf/register_fields', 'register_fields_tooltip');
+add_action('acf/include_field_types', 'include_field_types_tooltip');

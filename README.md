@@ -26,12 +26,13 @@ include_once('acf-tooltip/acf-tooltip.php');
 
 ### Compatibility
 
-This ACF field type is compatible with:
-* ACF 4
-* ACF 5
+This ACF field type is only compatible with ACF 5
 
 
 ### Changelog
+**1.1.0**
+* Changed code to fix issue with special charachters in tooltip 
+
 **1.0.1**
 * Small bugfixes
 
