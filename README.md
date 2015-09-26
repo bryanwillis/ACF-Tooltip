@@ -30,6 +30,9 @@ This ACF field type is only compatible with ACF 5
 
 
 ### Changelog
+**1.1.1**
+* Fix to work with Repeater Field
+
 **1.1.0**
 * Changed code to fix issue with special charachters in tooltip 
 

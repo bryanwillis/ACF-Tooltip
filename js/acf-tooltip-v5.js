@@ -2,7 +2,6 @@
 
 	var tooltiptext;
 	var label;
-	var description;
 
 	acf.add_action('ready append', function( $el ) {
 		$('.clones .table-layout').addClass('is_clone');
@@ -10,11 +9,6 @@
 		$('.acf-label').each(function() {
 			acf_label_tooltips($(this));
 		});
-
-		$('*').not('.clones').find('.table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
-			acf_repeater_tooltips($(this));
-		});
-		
 
 		$('*').not('.clones').find('.table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
 			acf_repeater_tooltips($(this));
@@ -56,28 +50,34 @@
 		that.find('span').remove();
 	};
 
+
 	function acf_tooltip() {
-		$('.tooltip').qtip({
-			style: {
-				classes: 'qtip-acf',
-				def: false
-			},
-			position: {
-				my: 'center left',  // Position my top left...
-				at: 'right center', // at the bottom right of...
-			},
-			content: {
-				text: $(this).parent().next('.description').html()
+		$('.tooltip').each(function() {
+			if ( $(this).hasClass('repeater') ) {
+				tooltiptext = $(this).parent().find('.description').html()
+			} else {
+				tooltiptext = $(this).parent().next('.description').html()
 			}
+			$(this).qtip({
+				style: {
+					classes: 'qtip-acf',
+					def: false
+				},
+				position: {
+					my: 'center left',  // Position my top left...
+					at: 'right center', // at the bottom right of...
+				},
+				content: {
+					text: tooltiptext
+				}
+			});
 		});
 	}
 
-	function acf_repeater_tooltips(repeaterfield) {		
-		description = repeaterfield.find('p.description')
-		tooltiptext = description.html();
-		description.remove();
-		if( !$.trim(tooltiptext) =='') {
-			repeaterfield.append('<span class="dashicons dashicons-editor-help tooltip"></span>');
+	function acf_repeater_tooltips(repeaterfield) {	
+		tooltiptext = repeaterfield.find('p.description').html();
+		if( !$.trim(tooltiptext) == '') {
+			repeaterfield.append('<span class="dashicons dashicons-editor-help repeater tooltip"></span>');
 		}
 	};
 
