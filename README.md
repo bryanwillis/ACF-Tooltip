@@ -4,7 +4,7 @@ Change the display of the ACF instructions. The ACF-Tooltips plugin hides the in
 
 ![advanced custom field column field in tabs](http://www.dreihochzwo.de/download/acf-tooltip2.jpg)
 
-**This plugin needs the installation/activation of Advanced Custom Fields V4 or V5**
+**This plugin needs the installation/activation of Advanced Custom Fields V5**
 
 ### Installation
 
